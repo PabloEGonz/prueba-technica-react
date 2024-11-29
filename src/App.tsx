@@ -1,34 +1,14 @@
 import "./App.css";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import TablaPaises from "./components/TablaPaises";
+import FormularioPais from "./components/FormularioPais";
 
-const queryClient = new QueryClient();
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Test />
-    </QueryClientProvider>
+    <div>
+      <FormularioPais />
+      <TablaPaises />
+    </div>
   );
 }
 
 export default App;
-
-const Test = () => {
-  const param = "canada";
-  const { data } = useQuery({
-    queryKey: ["companias"],
-    queryFn: () =>
-      fetch(
-        `https://core-financiero-backend.onrender.com/test/test?country=${encodeURIComponent(
-          param
-        )}`
-      ).then((res) => res.json()),
-  });
-  console.log(data);
-  return <div>testing</div>;
-};
